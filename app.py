@@ -55,7 +55,7 @@ def main(argv):
     main_logger.info("alarm-service has been started")
     
     # start errlog alarm
-    #proc.start(errlog_alarm.run)
+    proc.start(errlog_alarm.run, "errlog alarm process" )
 
 
 if __name__ == "__main__":
