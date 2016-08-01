@@ -13,18 +13,28 @@ _dev_metric_settings = {
             "errlog": {
                 "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "ybzhan;jjweng",
-                "mail_receivers": ""
+                "weixin_receivers": "ybzhan",
+                "mail_receivers": "ybzhan@ibenben.com"
             },
 
             "other_metric": {}
         },
 
         "other_project": {}
-        }
+    }
 
 # configuration for production env
-_metric_settings = {}
+_metric_settings = {
+        "oms": {
+            "errlog": {
+                "state": 1,
+                "alarm_type": 1,
+                "weixin_receivers": "jjweng",
+                "mail_receivers": "jjweng@ibenben.com"
+            }
+        }
+        
+    }
 
 def get_metric_settings(env):
     if env == "dev":
@@ -34,4 +44,7 @@ def get_metric_settings(env):
 
 
 if __name__ == "__main__":
-    pass
+    if _dev_metric_settings.has_key("hello"):
+        print "in"
+    else:
+        print "not in"

@@ -7,7 +7,8 @@ _dev_app_settings = {
         "zk_hosts": "localhost:2181",
 
         # topic of kafka
-        "errlog_topic": "alarm-errlog",
+        "topic_errlog": "alarm-errlog",
+        "consumer_group_errlog": "errlog_consumer",
 
         # log
         "log": {
@@ -16,8 +17,8 @@ _dev_app_settings = {
         },
         
         # msgsender
-        "msgsender": "http://localhost:8090"
-        }
+        "msgsender": "http://localhost:8090/"
+    }
 
 # configuration for production env
 _app_settings = {
@@ -26,7 +27,8 @@ _app_settings = {
         "zk_hosts": "10.168.72.226:2181,10.168.76.90:2181,10.168.59.183:2181",
 
         # topic of kafka
-        "errlog_topic": "alarm-errlog",
+        "topic_errlog": "alarm-errlog",
+        "consumer_group_errlog": "errlog_consumer",
 
         # log
         "log": {
@@ -35,8 +37,8 @@ _app_settings = {
         },
         
         # msgsender
-        "msgsender": "http://10.171.199.173:8090"
-        }
+        "msgsender": "http://10.171.199.173:8090/"
+    }
 
 def get_app_settings(env):
     if env == "dev":
