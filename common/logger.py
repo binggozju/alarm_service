@@ -17,7 +17,7 @@ def init(log_home, log_file):
 
     if os.path.exists(log_home) == False:
         print "create the log dir home"
-        os.mkdir(log_home)
+        os.makedirs(log_home)
 
     log_file_name = log_home + log_file
 
