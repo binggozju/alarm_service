@@ -37,7 +37,7 @@ def _handle_error_log(content):
     if not json_obj.has_key("filename"):
         return
     log_file_name = json_obj["filename"]
-    if file_name == "catalina.out":
+    if log_file_name == "catalina.out":
         return
 
     if not json_obj.has_key("message"):
