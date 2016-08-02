@@ -12,7 +12,7 @@ _dev_metric_settings = {
         "oms": {
             "errlog": {
                 "state": 1,
-                "alarm_type": 1,
+                "alarm_type": 3,
                 "weixin_receivers": "ybzhan",
                 "mail_receivers": "ybzhan@ibenben.com"
             },
@@ -32,8 +32,127 @@ _metric_settings = {
                 "weixin_receivers": "jjweng",
                 "mail_receivers": "jjweng@ibenben.com"
             }
+        },
+        "wmsadmin": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "wmsadminapi": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "pmsadmin": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "pmsadminapi": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "bmsadmin": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "bmsadminapi": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "wmsexpress": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "wmsexpressapi": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "wmsinventoryapi": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "tmsweb": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "testtmsweb": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "cronjob": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "tmsaddress": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "report": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
+        },
+        "pmsapi": {
+            "errlog": {
+                "state": 0,
+                "alarm_type": 1,
+                "weixin_receivers": "",
+                "mail_receivers": ""
+            }
         }
-        
     }
 
 def get_metric_settings(env):
