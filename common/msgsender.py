@@ -23,9 +23,12 @@ def send_mail(subject, content, receivers):
     request = urllib2.Request(url=mail_url, data=post_data)
     request.add_header("Accept", "application/json")
     request.add_header("Content-Type", "application/json; charset=utf-8")
-    response = urllib2.urlopen(request)
-    data = response.read()
-    print data
+    try:
+        response = urllib2.urlopen(request)
+        data = response.read()
+        print data
+    except Exception as e:
+        print "error: %s" % (e)
 
 
 def send_weixin(message, receivers):
@@ -35,9 +38,12 @@ def send_weixin(message, receivers):
     request = urllib2.Request(url=weixin_url, data=post_data)
     request.add_header("Accept", "application/json")
     request.add_header("Content-Type", "application/json; charset=utf-8")
-    response = urllib2.urlopen(request)
-    data = response.read()
-    print data
+    try:
+        response = urllib2.urlopen(request)
+        data = response.read()
+        print data
+    except Exception as e:
+        print "error: %s" % (e)
 
 
 if __name__ == "__main__":
