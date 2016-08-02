@@ -34,15 +34,18 @@ def _handle_error_log(content):
         errlog_logger.error("fail to parse, %s" % (e))
         return
 
+    if not json_obj.has_key("filename"):
+        return
+    log_file_name = json_obj["filename"]
+    if file_name == "catalina.out":
+        return
+
     if not json_obj.has_key("message"):
         return
     log_message = json_obj["message"]
     if not json_obj.has_key("type"):
         return
     project_name = json_obj["type"]
-    if not json_obj.has_key("filename"):
-        return
-    log_file_name = json_obj["filename"]
 
     # exit if the project has not been config
     if not metric_settings.has_key(project_name):

@@ -43,49 +43,49 @@ _metric_settings = {
         },
         "wmsadmin": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "qdi",
                 "mail_receivers": ""
             }
         },
         "wmsadminapi": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "qdi",
                 "mail_receivers": ""
             }
         },
         "pmsadmin": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "sszheng",
                 "mail_receivers": ""
             }
         },
         "pmsadminapi": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "sszheng",
                 "mail_receivers": ""
             }
         },
         "bmsadmin": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "sszheng",
                 "mail_receivers": ""
             }
         },
         "bmsadminapi": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "sszheng",
                 "mail_receivers": ""
             }
         },
@@ -107,57 +107,57 @@ _metric_settings = {
         },
         "wmsinventoryapi": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "fgao;jwang",
                 "mail_receivers": ""
             }
         },
         "tmsweb": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "jwpeng",
                 "mail_receivers": ""
             }
         },
         "testtmsweb": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "jwpeng",
                 "mail_receivers": ""
             }
         },
         "cronjob": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "qdi",
                 "mail_receivers": ""
             }
         },
         "tmsaddress": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "jwpeng",
                 "mail_receivers": ""
             }
         },
         "report": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "jzhang2;jwang",
                 "mail_receivers": ""
             }
         },
         "pmsapi": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "fyzhu;qxu",
                 "mail_receivers": ""
             }
         }

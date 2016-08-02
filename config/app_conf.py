@@ -8,7 +8,7 @@ _dev_app_settings = {
 
         # topic of kafka
         "topic_errlog": "alarm-errlog",
-        "consumer_group_errlog": "errlog_consumer",
+        "consumer_group_errlog": "errlog-consumer",
 
         # log
         "log": {
@@ -28,7 +28,7 @@ _app_settings = {
 
         # topic of kafka
         "topic_errlog": "alarm-errlog",
-        "consumer_group_errlog": "errlog_consumer",
+        "consumer_group_errlog": "errlog-consumer",
 
         # log
         "log": {
