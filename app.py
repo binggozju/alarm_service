@@ -10,6 +10,7 @@ sys.setdefaultencoding('utf8')
 import os
 homepath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(homepath)
+sys.path.append("/var/www")
 
 from alarm_service.config import app_conf
 from alarm_service.config import metric_conf
