@@ -47,6 +47,8 @@ def _handle_error_log(content):
         return
     project_name = json_obj["type"]
 
+    errlog_logger.debug("receive an error log: %s" % (content))
+    
     # exit if the project has not been config
     if not metric_settings.has_key(project_name):
         return
@@ -113,7 +115,7 @@ def run():
     # start consume the error log from kafka
     for msg in consumer:
         if msg is not None:
-            errlog_logger.debug("receive an error log: %s" % (msg.value))
+            #errlog_logger.debug("receive an error log: %s" % (msg.value))
             _handle_error_log(msg.value)
 
 
