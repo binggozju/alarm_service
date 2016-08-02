@@ -25,6 +25,14 @@ _dev_metric_settings = {
 
 # configuration for production env
 _metric_settings = {
+        "mock": {
+            "errlog": {
+                "state": 1,
+                "alarm_type": 3,
+                "weixin_receivers": "ybzhan",
+                "mail_receivers": "ybzhan@ibenben.com"
+            }
+        },
         "oms": {
             "errlog": {
                 "state": 1,
