@@ -32,7 +32,7 @@ _app_settings = {
 
         # log
         "log": {
-            "home": "/data0/logs/alarm-service/",
+            "home": "/data0/alarm-service/logs/",
             "file": "alarm-service.log"
         },
         
