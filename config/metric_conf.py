@@ -91,17 +91,17 @@ _metric_settings = {
         },
         "wmsexpress": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "qxu",
                 "mail_receivers": ""
             }
         },
         "wmsexpressapi": {
             "errlog": {
-                "state": 0,
+                "state": 1,
                 "alarm_type": 1,
-                "weixin_receivers": "",
+                "weixin_receivers": "qxu",
                 "mail_receivers": ""
             }
         },
