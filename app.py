@@ -8,7 +8,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 import os
-homepath = os.path.abspath("..")
+homepath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(homepath)
 
 from alarm_service.config import app_conf
