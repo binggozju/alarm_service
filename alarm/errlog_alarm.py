@@ -100,7 +100,7 @@ def _send_weixin_alarm(log_message, project_name, log_file_name):
             errlog_logger.warning("the weixin receivers of errlog in %s are blank" % (project_name))
             return
 
-        weixin_message = errlog_template.get_weixin_message(log_message, project_name, log_file_name)
+        weixin_message = errlog_template.get_weixin_message(log_message, project_name, log_file_name, count[project_name]["weixin"])
         result = msgsender.send_weixin(weixin_message, weixin_receivers)
         if result == 0:
             count[project_name]["weixin"] += 1
@@ -130,7 +130,7 @@ def _send_mail_alarm(log_message, project_name, log_file_name):
             errlog_logger.warning("the mail receivers of errlog in %s are blank" % (project_name))
             return
 
-        mail_message = errlog_template.get_mail_message(log_message, project_name, log_file_name)
+        mail_message = errlog_template.get_mail_message(log_message, project_name, log_file_name, count[project_name]["mail"])
         result = msgsender.send_mail("error日志实时告警", mail_message, mail_receivers)
         if result == 0:
             count[project_name]["mail"] += 1
