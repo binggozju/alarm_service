@@ -9,11 +9,21 @@ import json
 from alarm_service.common import logger
 from alarm_service.common import kafka
 from alarm_service.common import msgsender
+from alarm_service.common import timeutil
 from alarm_service.template import errlog_template
 
 app_settings = None
 metric_settings = None
 errlog_logger = None
+
+threshold_weixin_msg_num = 100  # max count of sending weixin msg for each project everyday
+threshold_mail_msg_num = 30 # max count of sending mail msg for each project everyday
+
+current_day = "2016-08-01"  # reset once a day 
+count = {
+       # "project": { "weixin": 0, "mail": 0 }    
+    }  # reset once a day
+
 
 def init(_app_settings, _metric_settings):
     """
@@ -22,6 +32,13 @@ def init(_app_settings, _metric_settings):
     global app_settings, metric_settings
     app_settings = _app_settings
     metric_settings = _metric_settings
+
+    global current_day
+    current_day = timeutil.get_current_day()
+
+    global count
+    for project in metric_settings.keys():
+        count[project] = { "weixin": 0, "mail": 0 }
 
     global errlog_logger
     errlog_logger = logger.get_logger("root.errlog_alarm")
@@ -47,7 +64,7 @@ def _handle_error_log(content):
         return
     project_name = json_obj["type"]
 
-    errlog_logger.debug("receive an error log: %s" % (content))
+    errlog_logger.debug("receive a log: %s" % (content))
     
     # exit if the project has not been config
     if not metric_settings.has_key(project_name):
@@ -62,11 +79,18 @@ def _handle_error_log(content):
     _send_alarm(log_message, project_name, log_file_name)
 
 
-def _send_alarm(log_message, project_name, log_file_name):
+def _send_weixin_alarm(log_message, project_name, log_file_name):
+    global current_day, count
+    
     alarm_type = metric_settings[project_name]["errlog"]["alarm_type"]
 
     # check whether or not to send weixin alarm
     if alarm_type & 1 == 1:
+        # check whether the count of weixin msg for this project has exceeded the threshold
+        if count[project_name]["weixin"] >= threshold_weixin_msg_num:
+            errlog_logger.warning("the weixin threshold of '%s' has been exceeded" % (project_name))
+            return
+
         if not metric_settings[project_name]["errlog"].has_key("weixin_receivers"):
             errlog_logger.warning("the weixin receivers of errlog in %s has not been configured" % (project_name))
             return
@@ -77,10 +101,26 @@ def _send_alarm(log_message, project_name, log_file_name):
             return
 
         weixin_message = errlog_template.get_weixin_message(log_message, project_name, log_file_name)
-        msgsender.send_weixin(weixin_message, weixin_receivers)
+        result = msgsender.send_weixin(weixin_message, weixin_receivers)
+        if result == 0:
+            count[project_name]["weixin"] += 1
+            errlog_logger.debug("the weixin message has been send successfully")
+        else:
+            errlog_logger.error("fail to send the weixin message")
 
+
+def _send_mail_alarm(log_message, project_name, log_file_name):
+    global current_day, count
+    
+    alarm_type = metric_settings[project_name]["errlog"]["alarm_type"]
+    
     # check whether or not to send mail alarm
     if alarm_type & 2 == 2:
+        # check whether the count of mail msg for this project has exceeded the threshold
+        if count[project_name]["mail"] >= threshold_mail_msg_num:
+            errlog_logger.warning("the mail threshold of '%s' has been exceeded" % (project_name))
+            return
+
         if not metric_settings[project_name]["errlog"].has_key("mail_receivers"):
             errlog_logger.warning("the mail receivers of errlog in %s has not been configured" % (project_name))
             return
@@ -91,9 +131,24 @@ def _send_alarm(log_message, project_name, log_file_name):
             return
 
         mail_message = errlog_template.get_mail_message(log_message, project_name, log_file_name)
-        msgsender.send_mail("error日志实时告警", mail_message, mail_receivers)
-    
-    errlog_logger.debug("the alarm message for error log has been sended to receivers")
+        result = msgsender.send_mail("error日志实时告警", mail_message, mail_receivers)
+        if result == 0:
+            count[project_name]["mail"] += 1
+            errlog_logger.debug("the mail message has been send successfully")
+        else:
+            errlog_logger.error("fail to send the mail message")
+
+
+def _send_alarm(log_message, project_name, log_file_name):
+    # check whether it is a new day, then reset current_day and count variables
+    global current_day, count
+    if current_day != timeutil.get_current_day():
+        current_day = timeutil.get_current_day()
+        for project in count.keys():
+            count[project] = { "weixin": 0, "mail": 0 }
+
+    _send_weixin_alarm(log_message, project_name, log_file_name)
+    _send_mail_alarm(log_message, project_name, log_file_name)
 
 
 def run():
