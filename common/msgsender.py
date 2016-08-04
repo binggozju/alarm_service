@@ -27,8 +27,10 @@ def send_mail(subject, content, receivers):
         response = urllib2.urlopen(request)
         data = response.read()
         print data
+        return 0
     except Exception as e:
         print "error: %s" % (e)
+        return 1
 
 
 def send_weixin(message, receivers):
@@ -42,8 +44,10 @@ def send_weixin(message, receivers):
         response = urllib2.urlopen(request)
         data = response.read()
         print data
+        return 0
     except Exception as e:
         print "error: %s" % (e)
+        return 1
 
 
 if __name__ == "__main__":

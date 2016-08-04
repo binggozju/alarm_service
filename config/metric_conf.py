@@ -43,7 +43,5 @@ def get_metric_settings(env):
 
 
 if __name__ == "__main__":
-    if _dev_metric_settings.has_key("hello"):
-        print "in"
-    else:
-        print "not in"
+    for project in _metric_settings.keys():
+        print project
