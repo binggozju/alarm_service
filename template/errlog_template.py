@@ -13,7 +13,7 @@ def get_mail_message(log_message, project_name, log_file_name, seq_id):
 
 def get_daily_report(statistical_result):
     daily_report = "error日志实时告警统计日报"
-    daily_report += "\n----------------------------------------"
+    daily_report += "\n------------------------------"
     daily_report += "\n%-25s%s" % ("项目", "告警次数")
     
     for project, num in statistical_result.items():
