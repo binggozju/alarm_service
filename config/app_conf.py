@@ -22,7 +22,7 @@ _dev_app_settings = {
         # receivers for daily report
         "daily_report_receivers": {
             "weixin": "ybzhan",
-            "mail": "ybzhan@ibenben.com"
+            "mail": ""
         }
     }
 
@@ -47,8 +47,8 @@ _app_settings = {
 
         # receivers for daily report
         "daily_report_receivers": {
-            "weixin": "wjzhu;ybzhan",
-            "mail": "wjzhu@ibenben.com;ybzhan@ibenben.com"
+            "weixin": "ybzhan",
+            "mail": ""
         }
     }
 
