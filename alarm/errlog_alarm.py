@@ -143,12 +143,37 @@ def _send_alarm(log_message, project_name, log_file_name):
     # check whether it is a new day, then reset current_day and count variables
     global current_day, count
     if current_day != timeutil.get_current_day():
+        # send a daily report for error log alarm
+        _send_daily_errlog_report()
+
+        # update the internal state
         current_day = timeutil.get_current_day()
         for project in count.keys():
             count[project] = { "weixin": 0, "mail": 0 }
 
     _send_weixin_alarm(log_message, project_name, log_file_name)
     _send_mail_alarm(log_message, project_name, log_file_name)
+
+
+def _send_daily_errlog_report():
+    """
+    send a daily report for error log alarm throungh weixin
+    """
+    statistical_result = {} # project name -> number of alarm daily
+
+    projects = count.keys()
+    projects.remove("mock")
+    for p in projects:
+        statistical_result[p] = max(count[p]["weixin"], count[p]["mail"])
+
+    daily_report = errlog_template.get_daily_report(statistical_result)
+
+    weixin_receivers = app_settings["daily_report_receivers"]["weixin"].strip()
+    result = msgsender.send_weixin(daily_report, weixin_receivers)
+    if result == 0:
+        errlog_logger.debug("the error log daily report has been send successfully")
+    else:
+        errlog_logger.error("fail to send the error log daily report")
 
 
 def run():
