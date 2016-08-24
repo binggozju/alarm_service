@@ -17,7 +17,13 @@ _dev_app_settings = {
         },
         
         # msgsender
-        "msgsender": "http://localhost:8090/"
+        "msgsender": "http://localhost:8090/",
+        
+        # receivers for daily report
+        "daily_report_receivers": {
+            "weixin": "ybzhan",
+            "mail": "ybzhan@ibenben.com"
+        }
     }
 
 # configuration for production env
@@ -37,7 +43,13 @@ _app_settings = {
         },
         
         # msgsender
-        "msgsender": "http://10.171.199.173:8090/"
+        "msgsender": "http://10.171.199.173:8090/",
+
+        # receivers for daily report
+        "daily_report_receivers": {
+            "weixin": "wjzhu;ybzhan",
+            "mail": "wjzhu@ibenben.com;ybzhan@ibenben.com"
+        }
     }
 
 def get_app_settings(env):
