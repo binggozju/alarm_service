@@ -48,7 +48,7 @@ _app_settings = {
         # receivers for daily report
         "daily_report_receivers": {
             "weixin": "wjzhu;ybzhan",
-            "mail": "wjzhu@ibenben.com;ybzhan@ibenben.com"
+            "mail": "wms@ibenben.com"
         }
     }
 
