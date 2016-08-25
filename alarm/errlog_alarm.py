@@ -166,14 +166,26 @@ def _send_daily_errlog_report():
     for p in projects:
         statistical_result[p] = max(count[p]["weixin"], count[p]["mail"])
 
-    daily_report = errlog_template.get_daily_report(statistical_result)
-
+    # send weixin daily report
+    weixin_daily_report = errlog_template.get_weixin_daily_report(statistical_result)
     weixin_receivers = app_settings["daily_report_receivers"]["weixin"].strip()
-    result = msgsender.send_weixin(daily_report, weixin_receivers)
-    if result == 0:
-        errlog_logger.debug("the error log daily report has been send successfully")
-    else:
-        errlog_logger.error("fail to send the error log daily report")
+    if weixin_receivers != "":
+        result = msgsender.send_weixin(weixin_daily_report, weixin_receivers)
+        if result == 0:
+            errlog_logger.debug("the weixin daily report for error log has been send successfully")
+        else:
+            errlog_logger.error("fail to send the weixin daily report for error log")
+
+    # send mail daily report
+    mail_daily_report = errlog_template.get_mail_daily_report(statistical_result)
+    mail_receivers = app_settings["daily_report_receivers"]["mail"].strip()
+    if mail_receivers != "":
+        mail_title = "Error日志告警简报(%s)" % (current_day)
+        result = msgsender.send_mail(mail_title, mail_daily_report, mail_receivers)
+        if result == 0:
+            errlog_logger.debug("the mail daily report for error log has been send successfully")
+        else:
+            errlog_logger.error("fail to send the mail daily report for error log")
 
 
 def run():
